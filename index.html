@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <title>Soru 3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <style>
+        .error {
+            margin-top: 0px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" ng-app="myApp" ng-controller="FormController">
+        <div class="textintro">
+            <h1>Form Validation</h1>
+            <p ng-show="msg">{{msg}}</p>
+        </div>
+        <form name="myform" ng-submit="register()">
+            <div class="form-group">
+                <input type="text" class="form-class" name="firstname" placeholder="Adınız" ng-model="user.firstname" ng-required="true">
+                <p class="error" ng-show="myform.firstname.$invalid && myform.firstname.$touched">Adınızı giriniz.</p>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-class" name="lastname" placeholder="Soyadınız" ng-model="user.lastname" ng-required="true">
+                <p class="error" ng-show="myform.lastname.$invalid && myform.lastname.$touched">Soyadınızı giriniz.</p>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-class" name="email" placeholder="Epostanız" ng-model="user.email" ng-required="true">
+                <p class="error" ng-show="myform.email.$invalid && myform.email.$touched">Geçerli bir Eposta adresi giriniz.</p>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-class" name="password" placeholder="Şifreniz" ng-model="user.password" ng-minlength="6" ng-required="true">
+                <p class="error" ng-show="myform.password.$invalid && myform.password.$touched">Parola en az 6 uzunluğunda olmalıdır.</p>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-class" name="phone" placeholder="Telefon Numaranız" ng-model="user.phone" ng-required="true">
+                <p class="error" ng-show="myform.phone.$invalid && myform.phone.$touched">Telefonunuzu giriniz.</p>
+            </div>
+            <div class="form-group">
+                <button data-toggle="modal" data-target="#myModal" type="submit" class="btn" ng-disabled="myform.$invalid">Kaydet</button>
+            </div>
+        </form>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Kayıt Bilgileri</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p ng-show="showName">{{showName}}</p>
+                        <p ng-show="showSurname">{{showSurname}}</p>
+                        <p ng-show="showEmail">{{showEmail}}</p>
+                        <p ng-show="showPassword">{{showPassword}}</p>
+                        <p ng-show="showPhone">{{showPhone}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Çıkış</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
